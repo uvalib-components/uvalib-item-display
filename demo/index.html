@@ -20,28 +20,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <p>An example of <code>&lt;uvalib-item-display&gt;</code>:</p>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+    <h2>No Item Attribute Passed</h2>
+    <uvalib-item-display></uvalib-item-display>
 
-    <uvalib-item-display author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-      <h2>Hello uvalib-item-display</h2>
-    </uvalib-item-display>
+    <h2>Catalog Item Example</h2>
+    <uvalib-item-display item='{"id": "u4212919", "title": "Cats [sound recording] : complete original Broadway cast recording.", "author": "Andrew Lloyd Webber", "format": "Sound Recording; CD","image": "http://search.lib.virginia.edu/catalog/u4212919/image.jpg"}'></uvalib-item-display>
+
+    <h2>Article Item Example</h2>
+    <uvalib-item-display item='{"id": "00381101-S0038110115000507", "title": "Future of nano CMOS technology", "author": "Iwai, Hiroshi", "format": "Article"}'></uvalib-item-display>
 
     <script>
       var seedElement = document.querySelector('uvalib-item-display');
-
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-
-      document.addEventListener("uvalib-item-display-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
-
     </script>
 
   </body>

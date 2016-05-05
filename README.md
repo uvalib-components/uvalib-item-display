@@ -1,6 +1,6 @@
 # uvalib-item-display
 
-An element that displays a Virgo item.
+An element that displays a Virgo catalog or article item.
 
 
 ## Dependencies

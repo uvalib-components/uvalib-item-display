@@ -29,28 +29,26 @@ Example:
 
 <dom-module id="uvalib-item-display">
   <template>
-    <style>
-      :host {
+    <style is="custom-style">
+      img .thumbnail {
         display: block;
-        box-sizing: border-box;
-      }
-
-      .author img {
-        display: block;
+        max-height: 120px;
+        max-width: 110px;
         float: left;
-        margin-right: 5px;
-        max-height: 100px;
-        max-width: 100px;
+      }
+      dt {
+        text-transform: uppercase;
       }
     </style>
-
-    <h1>&lt;uvalib-item-display&gt;</h1>
-    <content></content>
-    <p class="author">
-      <img src$="{{author.image}}">
-      Cheers,<br/>
-      <span class="name">{{author.name}}</span>
-    </p>
+    <div class="container flex-stretch-align">
+      <template is="dom-if" if="{{item.image}}">
+        <img class="thumbnail" src="{{item.image}}">
+      </template>
+      <template is="dom-if" if="{{item.title}}">
+        <h1>{{item.title}}</h1>
+      </template>
+      <dl>{{metadataList}}</dl>
+    </div>
   </template>
 
   <script>
@@ -59,18 +57,11 @@ Example:
 
       properties: {
         /**
-         * `fancy` indicates that the element should don a monocle and tophat,
-         * while checking its pocket watch.
-         */
-        fancy: Boolean,
-
-        /**
-         * Describes the author of the element, but is really just an excuse to
-         * show off JSDoc annotations.
+         * Item detail available for displaying.
          *
-         * @type {{name: string, image: string}}
+         * @type {Object}
          */
-        author: {
+        item: {
           type: Object,
           // Use `value` to provide a default value for a property, by setting it
           // on your element's prototype.
@@ -83,11 +74,24 @@ Example:
           // prototype).
           value: function() {
             return {
-              name:  'Dimitri Glazkov',
-              image: 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg',
+              id: 'u2228227',
+              title: 'Dogs',
+              author:  'Robin Wallace-Crabbe',
+              format: 'Book',
+              image: 'http://search.lib.virginia.edu/catalog/u2228227/image.jpg'
             };
           }
         },
+
+        /**
+         * Metadata list of item's keys and respective values.
+         *
+         * @type {String}
+         */
+        metadataList: {
+          type: String,
+          computed: 'getMetadataElementList(item)'
+        }
       },
 
       // Element Lifecycle
@@ -120,32 +124,25 @@ Example:
       // Element Behavior
 
       /**
-       * Sometimes it's just nice to say hi.
+       * Generates a metadata list of the key/value pairs, excluding the title
+       * and image URL keys.
        *
-       * @param {string} greeting A positive greeting.
-       * @return {string} The full greeting.
+       * @param {object} The item to be displayed.
+       * @return {string} A string containing DT and DD elements for
+       *    each key/value pair.
        */
-      sayHello: function(greeting) {
-        var response = greeting || 'Hello World!';
-        return 'uvalib-item-display says, ' + response;
-      },
-
-      /**
-       * The `uvalib-item-display-lasers` event is fired whenever `fireLasers` is called.
-       *
-       * @event uvalib-item-display-lasers
-       * @detail {{sound: String}}
-       */
-
-      /**
-       * Attempt to destroy this element's enemies with a beam of light!
-       *
-       * Or, at least, dispatch an event in the vain hope that someone else will
-       * do the zapping.
-       */
-      fireLasers: function() {
-        this.fire('uvalib-item-display-lasers', {sound: 'Pew pew!'});
+      getMetadataElementList: function(item) {
+        var metadata = "";
+        for (var key in item) {
+          if ((key != "title") && (key != "image")) {
+            if (item.hasOwnProperty(key)) {
+              metadata += "<dt>" + key + "</dt> " + "<dd>" + JSON.stringify(item[key]) + "</dd>";
+            }
+          }
+        }
+        return metadata;
       }
+
     });
   </script>
 </dom-module>
