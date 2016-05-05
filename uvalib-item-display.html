@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 
 <!--
-An element providing a solution to no problem in particular.
+An element that displays a Virgo catalog or article item.
 
 Example:
 
@@ -20,8 +20,7 @@ Example:
 
 Example:
 
-    <uvalib-item-display>
-      <h2>Hello uvalib-item-display</h2>
+    <uvalib-item-display item='{"id": "u2228227", "title": "Dogs", "author": "Robin Wallace-Crabbe", "format": "Book" ,"image": "http://search.lib.virginia.edu/catalog/u2228227/image.jpg"}, "subjects": "Dogs, Pets, Fiction"'>
     </uvalib-item-display>
 
 @demo demo/index.html
@@ -31,28 +30,42 @@ Example:
 <dom-module id="uvalib-item-display">
   <template>
     <style is="custom-style">
-      img .thumbnail {
-        display: block;
+      .thumbnail {
         max-height: 120px;
         max-width: 110px;
+        float: left;
+      }
+      h2 {
         float: left;
       }
       dt {
         text-transform: uppercase;
       }
+      .container div {
+        @apply(--layout-flex);
+      }
+      .media-title {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+      }
+      .metadata {
+        clear:both;
+        @apply(--layout-vertical);
+      }
     </style>
 
     <div class="container">
+      <div class="media-title">
+        <template is="dom-if" if="{{item.image}}">
+          <img class="thumbnail" src="{{item.image}}">
+        </template>
 
-      <template is="dom-if" if="{{item.image}}">
-        <img class="thumbnail" src="{{item.image}}">
-      </template>
+        <template is="dom-if" if="{{item.title}}">
+          <h2>{{item.title}}</h2>
+        </template>
+      </div>
 
-      <template is="dom-if" if="{{item.title}}">
-        <h1>{{item.title}}</h1>
-      </template>
-
-      <dl id="metadata"></dl>
+      <dl id="metadata" class="metadata"></dl>
 
     </div>
   </template>
@@ -63,7 +76,7 @@ Example:
 
       properties: {
         /**
-         * Item detail available for displaying.
+         * An object representing an item from the Catalog or an article search.
          *
          * @type {Object}
          */
@@ -91,7 +104,7 @@ Example:
         },
 
         /**
-         * Metadata list of item's keys and respective values.
+         * Private metadata list of item's keys and values.
          *
          * @type {String}
          */
@@ -131,6 +144,9 @@ Example:
 
       // Element Behavior
 
+      /**
+       * Recreate the private metadata list when the item property changes.
+       */
       _itemChanged: function() {
         var metadata = "";
         for (var key in this.item) {
@@ -144,12 +160,8 @@ Example:
       },
 
       /**
-       * Generates a metadata list of the key/value pairs, excluding the title
-       * and image URL keys.
-       *
-       * @param {object} The item to be displayed.
-       * @return {string} A string containing DT and DD elements for
-       *    each key/value pair.
+       * When the private metadata list property value is update, change the
+       * inner HTML content for the DL element.
        */
       _metadataElementListChanged: function() {
         this.$.metadata.innerHTML=this._metadataList;

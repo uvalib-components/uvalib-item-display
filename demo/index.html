@@ -18,19 +18,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
   <body unresolved>
 
-    <p>An example of <code>&lt;uvalib-item-display&gt;</code>:</p>
+    <p>Examples of <code>&lt;uvalib-item-display&gt;</code>:</p>
 
-    <h2>No Item Attribute Passed</h2>
+    <h1>No Item Attribute Passed</h1>
+    <p>The display below uses the default value set for item attribute.</p>
     <uvalib-item-display></uvalib-item-display>
 
-    <h2>Catalog Item Example</h2>
+    <h1>Example Catalog Item Attribute Passed</h1>
     <uvalib-item-display item='{"id": "u4212919", "title": "Cats [sound recording] : complete original Broadway cast recording.", "author": "Andrew Lloyd Webber", "format": "Sound Recording; CD","image": "http://search.lib.virginia.edu/catalog/u4212919/image.jpg"}'></uvalib-item-display>
 
-    <h2>Article Item Example</h2>
+    <h1>Example Article Item Attribute Passed</h1>
     <uvalib-item-display item='{"id": "00381101-S0038110115000507", "title": "Future of nano CMOS technology", "author": "Iwai, Hiroshi", "format": "Article"}'></uvalib-item-display>
 
     <script>
-      var seedElement = document.querySelector('uvalib-item-display');
     </script>
 
   </body>
