@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -40,14 +41,19 @@ Example:
         text-transform: uppercase;
       }
     </style>
-    <div class="container flex-stretch-align">
+
+    <div class="container">
+
       <template is="dom-if" if="{{item.image}}">
         <img class="thumbnail" src="{{item.image}}">
       </template>
+
       <template is="dom-if" if="{{item.title}}">
         <h1>{{item.title}}</h1>
       </template>
-      <dl>{{metadataList}}</dl>
+
+      <dl id="metadata"></dl>
+
     </div>
   </template>
 
@@ -80,7 +86,8 @@ Example:
               format: 'Book',
               image: 'http://search.lib.virginia.edu/catalog/u2228227/image.jpg'
             };
-          }
+          },
+          observer: "_itemChanged"
         },
 
         /**
@@ -88,9 +95,10 @@ Example:
          *
          * @type {String}
          */
-        metadataList: {
+        _metadataList: {
           type: String,
-          computed: 'getMetadataElementList(item)'
+          value: "",
+          observer: '_metadataElementListChanged'
         }
       },
 
@@ -123,6 +131,18 @@ Example:
 
       // Element Behavior
 
+      _itemChanged: function() {
+        var metadata = "";
+        for (var key in this.item) {
+          if ((key != "title") && (key != "image")) {
+            if (this.item.hasOwnProperty(key)) {
+              metadata += "<dt>" + key + "</dt> " + "<dd>" + this.item[key] + "</dd>";
+            }
+          }
+        }
+        this.set("_metadataList", metadata);
+      },
+
       /**
        * Generates a metadata list of the key/value pairs, excluding the title
        * and image URL keys.
@@ -131,16 +151,8 @@ Example:
        * @return {string} A string containing DT and DD elements for
        *    each key/value pair.
        */
-      getMetadataElementList: function(item) {
-        var metadata = "";
-        for (var key in item) {
-          if ((key != "title") && (key != "image")) {
-            if (item.hasOwnProperty(key)) {
-              metadata += "<dt>" + key + "</dt> " + "<dd>" + JSON.stringify(item[key]) + "</dd>";
-            }
-          }
-        }
-        return metadata;
+      _metadataElementListChanged: function() {
+        this.$.metadata.innerHTML=this._metadataList;
       }
 
     });
