@@ -38,9 +38,6 @@ Example:
       h2 {
         float: left;
       }
-      dt {
-        text-transform: uppercase;
-      }
       .container div {
         @apply(--layout-flex);
       }
@@ -54,7 +51,7 @@ Example:
       }
     </style>
 
-    <div class="container">
+    <div class="container" role="">
       <div class="media-title">
         <template is="dom-if" if="{{item.image}}">
           <img class="thumbnail" src="{{item.image}}">
@@ -149,10 +146,12 @@ Example:
        */
       _itemChanged: function() {
         var metadata = "";
+        var keyLabel = "";
         for (var key in this.item) {
           if ((key != "title") && (key != "image")) {
             if (this.item.hasOwnProperty(key)) {
-              metadata += "<dt>" + key + "</dt> " + "<dd>" + this.item[key] + "</dd>";
+              keyLabel = key.replace(/(^|\s)[a-z]/g,function(f){return f.toUpperCase();});
+              metadata += "<dt>" + keyLabel + "</dt> " + "<dd>" + this.item[key] + "</dd>";
             }
           }
         }
