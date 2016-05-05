@@ -1,0 +1,37 @@
+{
+  "name": "uvalib-item-display",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "uvalib-item-display.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.3.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "c4cf0da333",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c4cf0da333a24f1cdc3bd1abcb18ee81d59cb093"
+  },
+  "_source": "git@github.com:uvalib-components/uvalib-item-display.git",
+  "_target": "master",
+  "_originalSource": "git@github.com:uvalib-components/uvalib-item-display",
+  "_direct": true
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>uvalib-item-display Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../uvalib-item-display.html">
+  </head>
+  <body unresolved>
+
+    <p>Examples of <code>&lt;uvalib-item-display&gt;</code>:</p>
+
+    <h1>No Item Attribute Passed</h1>
+    <p>The display below uses the default value set for item attribute.</p>
+    <uvalib-item-display></uvalib-item-display>
+
+    <h1>Example Catalog Item Attribute Passed</h1>
+    <uvalib-item-display item='{"id": "u4212919", "title": "Cats [sound recording] : complete original Broadway cast recording.", "author": "Andrew Lloyd Webber", "format": "Sound Recording; CD","image": "http://search.lib.virginia.edu/catalog/u4212919/image.jpg"}'></uvalib-item-display>
+
+    <h1>Example Article Item Attribute Passed</h1>
+    <uvalib-item-display item='{"id": "00381101-S0038110115000507", "title": "Future of nano CMOS technology", "author": "Iwai, Hiroshi", "format": "Article"}'></uvalib-item-display>
+
+    <script>
+    </script>
+
+  </body>
+</html>
