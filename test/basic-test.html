@@ -22,41 +22,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
 
     <!-- You can use the document as a place to set up your fixtures. -->
-    <test-fixture id="uvalib-item-display-fixture">
+    <test-fixture id="uvalib-item-display-article-fixture">
       <template>
-        <uvalib-item-display></uvalib-item-display>
+        <uvalib-item-display item='{"id": "issn-print:02767783", "format": "Article", "title": "MOBILE APPLICATION USABILITY: CONCEPTUALIZATION AND INSTRUMENT DEVELOPMENT.", "author": "Hoehle, Hartmut; Venkatesh, Viswanath"}'></uvalib-item-display>
+      </template>
+    </test-fixture>
+    <test-fixture id="uvalib-item-display-dvd-fixture">
+      <template>
+        <uvalib-item-display item='{"id": "u6715097", "format: "Video; DVD", "title": "The Black Panthers : vanguard of the revolution", "director": "Stanley Nelson", "release date": "2016", "image": "http://search.lib.virginia.edu/images/catalog/default_bookcover.gif"}'></uvalib-item-display>
+      </template>
+    </test-fixture>
+    <test-fixture id="uvalib-item-display-empty-fixture">
+      <template>
+        <uvalib-item-display item='{}'></uvalib-item-display>
       </template>
     </test-fixture>
 
     <script>
       suite('<uvalib-item-display>', function() {
 
-        var myEl;
+        var myArticle, myVideo, myEmpty, imgEl, titleEl, dataListEl;
 
         setup(function() {
-          myEl = fixture('uvalib-item-display-fixture');
+          myArticle = fixture('uvalib-item-display-fixture');
+          myVideo = fixture('uvalib-item-display-dvd-fixture');
+          myEmpty = fixture('uvalib-item-display-empty-fixture');
         });
 
-        test('defines the "author" property', function() {
-          assert.equal(myEl.author.name, 'Dimitri Glazkov');
-          assert.equal(myEl.author.image, 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg');
+        test('image element found', function(done) {
+          flush(function() {
+            imgEl = Polymer.dom(myVideo).querySelector('img');
+            assert.equal(imgEl.length, 1);
+          })
         });
+/*        test('image element not found', function(done) {
 
-        test('says hello', function() {
-          assert.equal(myEl.sayHello(), 'uvalib-item-display says, Hello World!');
-
-          var greetings = myEl.sayHello('greetings Earthlings');
-          assert.equal(greetings, 'uvalib-item-display says, greetings Earthlings');
         });
+        test('title element found', function() {
 
-        test('fires lasers', function(done) {
-          myEl.addEventListener('uvalib-item-display-lasers', function(event) {
-            assert.equal(event.detail.sound, 'Pew pew!');
-            done();
-          });
-          myEl.fireLasers();
         });
+        test('title element not found', function() {
 
+        });
+        test('dl element found', function() {
+
+        });
+        test('dl element not empty', function() {
+
+        });
+*/
         test('distributed children', function() {
           var els = myEl.getContentChildren();
           assert.equal(els.length, 1, 'one distributed node');
