@@ -22,6 +22,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
 
     <!-- You can use the document as a place to set up your fixtures. -->
+    <test-fixture id="uvalib-item-display-empty-fixture">
+      <template>
+        <uvalib-item-display item='{}'></uvalib-item-display>
+      </template>
+    </test-fixture>
     <test-fixture id="uvalib-item-display-article-fixture">
       <template>
         <uvalib-item-display item='{"id": "issn-print:02767783", "format": "Article", "title": "MOBILE APPLICATION USABILITY: CONCEPTUALIZATION AND INSTRUMENT DEVELOPMENT.", "author": "Hoehle, Hartmut; Venkatesh, Viswanath"}'></uvalib-item-display>
@@ -29,44 +34,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </test-fixture>
     <test-fixture id="uvalib-item-display-dvd-fixture">
       <template>
-        <uvalib-item-display item='{"id": "u6715097", "format: "Video; DVD", "title": "The Black Panthers : vanguard of the revolution", "director": "Stanley Nelson", "release date": "2016", "image": "http://search.lib.virginia.edu/images/catalog/default_bookcover.gif"}'></uvalib-item-display>
-      </template>
-    </test-fixture>
-    <test-fixture id="uvalib-item-display-empty-fixture">
-      <template>
-        <uvalib-item-display item='{}'></uvalib-item-display>
+        <uvalib-item-display item='{"id": "u6715097", "format": "Video; DVD", "title": "The Black Panthers : vanguard of the revolution", "director": "Stanley Nelson", "image": "http://search.lib.virginia.edu/images/catalog/default_bookcover.gif"}'></uvalib-item-display>
       </template>
     </test-fixture>
 
     <script>
       suite('<uvalib-item-display>', function() {
 
-        var myArticle, myVideo, myEmpty, imgEl, titleEl, dataListEl;
+        var myArticle, myVideo, myEmpty, elemList;
 
         setup(function() {
-          myArticle = fixture('uvalib-item-display-fixture');
+          myArticle = fixture('uvalib-item-display-article-fixture');
           myVideo = fixture('uvalib-item-display-dvd-fixture');
           myEmpty = fixture('uvalib-item-display-empty-fixture');
         });
 
-        test('image element found', function(done) {
-          flush(function() {
-            imgEl = Polymer.dom(myVideo).querySelector('img');
-            assert.equal(imgEl.length, 1);
-          })
+        test('image element found', function() {
+          elemList = myVideo.getContentChildren();
+          assert.equal(elemList[0], myVideo.querySelector('img'));
         });
-/*        test('image element not found', function(done) {
 
+        test('image element not found', function() {
+          elemList = myArticle.getContentChildren();
+          assert.equal(elemList.length, 0);
         });
-        test('title element found', function() {
 
+        test('h2 element found', function() {
+          elemList = myVideo.getContentChildren();
+          assert.equal(elemList[1], myVideo.querySelector('h2'));
         });
-        test('title element not found', function() {
 
+        test('h2 element not found', function() {
+          elemList = myEmpty.getContentChildren();
+          assert.equal(elemList.length, 0);
         });
+
         test('dl element found', function() {
+//          flush(function() {
+            var metaList = Polymer.dom(myVideo.root).querySelector('#metadata');
+            assert.equal(metaList, myVideo.querySelector('dl'));
+//            done();
+//          });
+        });
+
+        test('dl element not found', function(done) {
+          // There should always be a DL element generated even if there is no metadata in the item.
+          flush(function() {
+            var metaList = Polymer.dom(myEmpty.root).querySelector('#metadata');
+            assert.isNotNull(metaList);
+            done();
+          });
+        });
+
+/*        test('dl element empty', function() {
 
         });
+
         test('dl element not empty', function() {
 
         });
