@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
       suite('<uvalib-item-display>', function() {
 
-        var myArticle, myVideo, myEmpty, elemList;
+        var myArticle, myVideo, myEmpty;
 
         setup(function() {
           myArticle = fixture('uvalib-item-display-article-fixture');
@@ -49,51 +49,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           myEmpty = fixture('uvalib-item-display-empty-fixture');
         });
 
-        test('image element found', function() {
-          elemList = myVideo.getContentChildren();
-          assert.equal(elemList[0], myVideo.querySelector('img'));
+        test('image element found', function(done) {
+          flush(function() {
+            assert.isNotNull(myVideo.$$('img'));
+            done();
+          });
         });
 
-        test('image element not found', function() {
-          elemList = myArticle.getContentChildren();
-          assert.equal(elemList.length, 0);
+        test('image element not found', function(done) {
+          flush(function() {
+            assert.isNull(myArticle.$$('img'));
+            done();
+          });
         });
 
-        test('h2 element found', function() {
-          elemList = myVideo.getContentChildren();
-          assert.equal(elemList[1], myVideo.querySelector('h2'));
+        test('h2 element found', function(done) {
+          flush(function() {
+            assert.isNotNull(myVideo.$$('h2'));
+            done();
+          });
         });
 
-        test('h2 element not found', function() {
-          elemList = myEmpty.getContentChildren();
-          assert.equal(elemList.length, 0);
+        test('h2 element not found', function(done) {
+          flush(function() {
+            assert.isNull(myEmpty.$$('h2'));
+            done();
+          });
         });
 
-        test('dl element found', function() {
-//          flush(function() {
-            var metaList = Polymer.dom(myVideo.root).querySelector('#metadata');
-            assert.equal(metaList, myVideo.querySelector('dl'));
-//            done();
-//          });
+        test('dl element found', function(done) {
+          flush(function() {
+            assert.isNotNull(myVideo.$$('#metadata'));
+            done();
+          });
         });
 
         test('dl element not found', function(done) {
           // There should always be a DL element generated even if there is no metadata in the item.
           flush(function() {
-            var metaList = Polymer.dom(myEmpty.root).querySelector('#metadata');
-            assert.isNotNull(metaList);
+            assert.isNotNull(myEmpty.$$('#metadata'));
             done();
           });
         });
 
-/*        test('dl element empty', function() {
-
+        test('dl element empty', function(done) {
+          flush(function() {
+            assert.isNull(myEmpty.$$('dd'));
+            done();
+          });
         });
 
-        test('dl element not empty', function() {
-
+        test('dl element not empty', function(done) {
+          flush(function() {
+            assert.isNotNull(myVideo.$$('dd'));
+            assert.isNotNull(myArticle.$$('dd'));
+            done();
+          });
         });
-*/
+
       });
     </script>
 
