@@ -1,15 +1,17 @@
 {
-  verbose: true,
-  testTimeout: 5 * 60 * 1000,
-  plugins: {
-    sauce: {
-      disabled: true,
-      browsers: [
+  "verbose": true,
+  "plugins": {
+    "local": {
+      "browsers": ["chrome", "firefox"]
+    },
+    "sauce": {
+      "disabled": true,
+      "browsers": [
         "Windows 8.1/internet explorer",
-        "Windows 10/internet explorer",
+        "Windows 10/microsoftedge",
         "OS X 10.10/chrome",
         "OS X 10.10/firefox",
-        "OS X 10.10/safari"
+        "OS X 10.11/safari"
       ]
     }
   }
