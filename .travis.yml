@@ -1,6 +1,6 @@
 language: node_js
 sudo: required
-dist: trusty
+dist:
 before_script:
 - npm install -g bower polylint web-component-tester
 - bower install
@@ -28,4 +28,4 @@ addons:
 script:
 - xvfb-run wct --skip-plugin sauce
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --skip-plugin local -s 'default';
-fi
+  fi
