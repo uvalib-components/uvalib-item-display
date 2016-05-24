@@ -7,11 +7,31 @@
     "sauce": {
       "disabled": true,
       "browsers": [
-        "Windows 8.1/internet explorer",
-        "Windows 10/microsoftedge",
-        "OS X 10.10/chrome",
-        "OS X 10.10/firefox",
-        "OS X 10.11/safari"
+        {
+          "browserName": "microsoftedge",
+          "platform": "Windows 10",
+          "version": ""
+        },
+        {
+          "browserName": "internet explorer",
+          "platform": "Windows 8.1",
+          "version": "11"
+        },
+        {
+          "browserName": "safari",
+          "platform": "OS X 10..11",
+          "version": "9"
+        },
+        {
+          "browserName": "firefox",
+          "platform": "OS X 10.10",
+          "version": ""
+        },
+        {
+          "browserName": "chrome",
+          "platform": "OS X 10.10",
+          "version": ""
+        }
       ]
     }
   }
