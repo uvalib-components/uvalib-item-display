@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: true
 dist: trusty
 node_js: stable
 addons:
@@ -9,6 +9,7 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
+  sauce_connect: true
 before_script:
 - npm install -g bower polylint web-component-tester
 - bower install

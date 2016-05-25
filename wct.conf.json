@@ -5,6 +5,7 @@
       "browsers": ["chrome", "firefox"]
     },
     "sauce": {
+      "disabled": true,
       "browsers": [
         {
           "browserName": "microsoftedge",
