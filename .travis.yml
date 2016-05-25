@@ -1,6 +1,13 @@
 language: node_js
-sudo: required
-dist: trusty
+sudo: false
+node_js: stable
+addons:
+  firefox: latest
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
 before_script:
 - npm install -g bower polylint web-component-tester
 - bower install
@@ -14,15 +21,6 @@ env:
   - secure: BphXFD8Ug8xsff9uDzL3u9CpkAXQSsJ10J8DrKQX7+Bf1z+szDxnL5UyFoL7nxTJ/dYViRIVG8DKXF3o/aWr4EbhDyW2ty/tWgzkaPEHLNcc2vLfeVYEweCZkrKN52B3pDHDNmphjTCK42BZJt2Xvuv3n+6wN99ZMhJuel0fIOfiprXSOExYbFZdaYJ5QfeEcIXDGpMgOyYmgZDAHS9Lj6VKu1734xsAlq+cYdalvQ3kRVuPBhNy8YCsjcfphGtw+CqBeq0RMCubn70z/nGGBgB5VVY0wDUj6lgvIVzMyKhRhuu7mVSvQrguvqEGiIfFnq5pAZgTcPY0Ax1jZkwSj66AcLbg5KbbM6kdCUhghW3gQV/YxAltxiZ3vDfaYc7jznfu73xMuqsSs3PFkfuMXs3Vk5nWD+mjprH1XDUBbrSD4pLST1CvxMrfH55cxoaZk0Cs/YigyDAdYKaj5PdOYHCBf2W9Vk3CNFiCpciGcBWQEhnVz4GORQiqO6XLv+/xbyCK92GoYXuJNe7IYs4Jb5DL6e32I+TKEKQz1YPx7li5Iiy+6vxdKXKeLCj1piVbRsPGVU+8uonahFGvuSU5GqplcT0ick6wN7RaAwUP0GZWH6qCTcZ2lQyF9PvUYcrqylsZg9XhMNkdxBBnG8ZSs4RSYpooPj1D46vn86nkH+k=
   - secure: IjxVfXigbQsBjRdKb9II4eyYqsRBPIxpDdtPizasykp+Hu60R+gblxmZ7DoIjJN33tADh30eo0LcgAQxuxIHweXCV96ZGwDKk3WpNInNIKIilmpe58t4u985yYTevwjzEXRlW9l4MsZ4ARmV3Fpjn4ogVGbRH4LJ208nlqj8Il1B/5E0A7Z4AkRjWbip12OYe41GdM39LenYheNnN8txxSOJTMIiQDWumbwxC6G7/c2Iw7Qa8HcXLqGS1B4fc+gymOWUUFtwf+/mUj4Z6RyI12bbrTg6ZAK9cVp8eTDxmCtKUKhVKTwACxu0q59K+/ZWIWDyJ2pFrk0U48vLemhecsvBBfmSgohDNXCArYAU1APXpGz0xd8f22jRshXNqNJv0JkLwOn3nIFajyAJx6XcrhafRIaobhJQmRtwNmlDK5MrJB4+GINjTe1SxdNZgu7TXWZ7daqlQ53+CbZyRv82auRT6Tb6gSkHRaxrzCn5OUuEPK4p4S1IKHdP3Lg94fwDwPZug4Q3JYA8e4F3qOzrGjbC629OH8LMYfT3liDFinEObYvjHmWoRlWzkj+J8JOzKjCArAOSY9BY+/JbxO6FDfhuyOLwezoymvuaPOTjW/PpntOkd5+4XrThV0KE6UrnisBNNA5xCeXOgcjjAda3B316nMrVcakvqvK1ZukDVnE=
   - secure: LdrIHTOXJrgv4sZSV6pGq4pNU4aKErvc2xmXeN4u91Fp+Q2LnfStv5Wb8m5Jw09HQbdBRv8XXtKtxEpqPwVTKJCUXx/pkjxIy5PQrzEM5xSICAKbXM4Kg/ImAgvX1aZP5XI/lkh6k+z86IJQBR0cDRWBNRRXK0v/LUpmH6kTNahjDfQCfj9XF7ud3WEDM0TOnnP7ez0F3IUjMSLUrA6Vb/pRq39vrMP/lIGk6whmV4cDL1oELVGJXfwkRM9PsnImr7+UK2TVvLp3hScT/aWZlmUQ7jQGgyEbZOprsdFgOwwNCfna9QPCxpDBPJtBTI56J7sCiXGXd2RNpyHID2xRB/KimcvagsBwOE8t2SF+W/W8Gx+eBU4VMQoI/fKTC/li8nHHev5m0BGd4NShQX2wcPrPKd8/09yPWxieyYLN519SJiYuY2Y7zD3PX/ps2i2VM1u3V5dyzCK2+mNsqdvCWFu6i+gwj+cpyafvHGibdsbqQKy1HQhv9v1QuzpSdhBiqgiqvZahO6jTxCAxX+xdwQz16gWent/t75mq31VBNRxDyjZJTurnRa16mqc/KerwrheSumPwkJ8LERA9onLWeFhFEd6mgnaWeWfCOgTAPcGIogQ37jjWg7TRHUs6H3w3FmgCnX9LCuFsDMaED/1EaOZp7LPq3dh6m3alSP6csFQ=
-node_js: stable
-addons:
-  firefox: latest
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
-  sauce_connect: true
 script:
 - xvfb-run wct --skip-plugin sauce
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --skip-plugin local -s 'default'; fi
