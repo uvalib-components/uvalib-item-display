@@ -1,13 +1,8 @@
 {
   "verbose": true,
   "plugins": {
-    "local": {
-      "browsers": ["chrome", "firefox"]
-    },
     "sauce": {
-      "disabled": true,
-      "browsers": [
-        {
+      "browsers": [{
           "browserName": "microsoftedge",
           "platform": "Windows 10",
           "version": ""
@@ -31,8 +26,10 @@
           "browserName": "chrome",
           "platform": "OS X 10.10",
           "version": ""
-        }
-      ]
+        }]
+    },
+    "local": {
+      "browsers": ["chrome", "firefox"]
     }
   }
 }
