@@ -1,4 +1,5 @@
-# uvalib-item-display
+
+# uvalib-item-display  [![Build Status](https://travis-ci.org/uvalib-components/uvalib-item-display.svg?branch=master)](https://travis-ci.org/uvalib-components/uvalib-item-display)
 
 An element that displays a Virgo catalog or article item.
 
