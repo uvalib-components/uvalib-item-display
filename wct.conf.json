@@ -15,7 +15,7 @@
         {
           "browserName": "internet explorer",
           "platform": "Windows 8.1",
-          "version": "latest-1"
+          "version": "10"
         },
         {
           "browserName": "internet explorer",
@@ -25,7 +25,7 @@
         {
           "browserName": "internet explorer",
           "platform": "Windows 7",
-          "version": "latest-1"
+          "version": "10"
         },
         {
           "browserName": "safari",
@@ -35,12 +35,12 @@
         {
           "browserName": "firefox",
           "platform": "OS X 10.10",
-          "version": ""
+          "version": "latest"
         },
         {
           "browserName": "chrome",
           "platform": "OS X 10.10",
-          "version": ""
+          "version": "latest"
         }]
     },
     "local": {
