@@ -10,22 +10,27 @@
         {
           "browserName": "internet explorer",
           "platform": "Windows 8.1",
-          "version": "11"
+          "version": "latest"
+        },
+        {
+          "browserName": "internet explorer",
+          "platform": "Windows 8.1",
+          "version": "latest-1"
         },
         {
           "browserName": "internet explorer",
           "platform": "Windows 7",
-          "version": "10"
+          "version": "latest"
         },
         {
           "browserName": "internet explorer",
           "platform": "Windows 7",
-          "version": "9"
+          "version": "latest-1"
         },
         {
           "browserName": "safari",
           "platform": "OS X 10.11",
-          "version": "9"
+          "version": "latest"
         },
         {
           "browserName": "firefox",
