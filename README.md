@@ -3,6 +3,7 @@
 
 An element that displays a Virgo catalog or article item.
 
+_[Demo and API docs](https://uvalib-components.github.io/uvalib-item-display)_
 
 ## Dependencies
 
